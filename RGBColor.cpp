@@ -10,9 +10,9 @@ byte RGBColor::getRed() const { return r; }
 byte RGBColor::getGreen() const { return g; }
 byte RGBColor::getBlue() const { return b; }
 
-void RGBColor::setRed(int val) { r = validate(val); }
-void RGBColor::setGreen(int val) { g = validate(val); }
-void RGBColor::setBlue(int val) { b = validate(val); }
+void RGBColor::setRed(int val) { r = constrain(val, 0, 255); }
+void RGBColor::setGreen(int val) { g = constrain(val, 0, 255); }
+void RGBColor::setBlue(int val) { b = constrain(val, 0, 255); }
 
 RGBColor& RGBColor::operator+=(const RGBColor &other) {
   this->setRed(this->getRed() + other.getRed());
@@ -28,6 +28,13 @@ RGBColor& RGBColor::operator-=(const RGBColor &other) {
   return *this;
 }
 
+RGBColor& RGBColor::operator*=(const float num) {
+  this->setRed(this->getRed() * num);
+  this->setGreen(this->getGreen() * num);
+  this->setBlue(this->getBlue() * num);
+  return *this;
+}
+
 RGBColor RGBColor::operator+(const RGBColor &other) {
   return RGBColor(*this) += other;
 }
@@ -36,8 +43,6 @@ RGBColor RGBColor::operator-(const RGBColor &other) {
   return RGBColor(*this) -= other;
 }
 
-byte RGBColor::validate(int val) {
-  if (val > 255) val = 255;
-  else if (val < 0) val = 0;
-  return val;
+RGBColor RGBColor::operator*(const float num) {
+  return RGBColor(*this) *= num;
 }

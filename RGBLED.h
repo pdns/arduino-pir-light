@@ -6,8 +6,9 @@
 class RGBLED {
 
   public:
-    RGBLED(int rPin, int gPin, int bPin, int rVal, int gVal, int bVal);
-    RGBLED(int rPin, int gPin, int bPin, RGBColor c);
+    RGBLED(int rPin, int gPin, int bPin, int rVal, int gVal, int bVal,
+           float fadeSpeed = 1);
+    RGBLED(int rPin, int gPin, int bPin, RGBColor c, float fadeSpeed = 1);
     void on();
     void off();
 
@@ -16,7 +17,10 @@ class RGBLED {
     int gPin;
     int bPin;
     RGBColor color;
+    float fadePerc;
+    float currFade;
     void setPins();
+    void lightAsColor(RGBColor c);
 };
 
 #endif

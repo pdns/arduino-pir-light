@@ -2,6 +2,7 @@
 #define RGBCOLOR_H
 
 #include "Arduino.h"
+// #include "math.h"
 
 class RGBColor {
 
@@ -15,14 +16,15 @@ class RGBColor {
     void setBlue(int val);
     RGBColor& operator+=(const RGBColor &other);
     RGBColor& operator-=(const RGBColor &other);
+    RGBColor& operator*=(const float num);
     RGBColor operator+(const RGBColor &other);
     RGBColor operator-(const RGBColor &other);
+    RGBColor operator*(const float num);
 
   private:
     byte r;
     byte g;
     byte b;
-    byte validate(int val);
 };
 
 #endif
