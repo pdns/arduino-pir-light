@@ -13,6 +13,7 @@ class RGBLED {
     void off();
 
   private:
+    static const byte gamma[];
     int rPin;
     int gPin;
     int bPin;
