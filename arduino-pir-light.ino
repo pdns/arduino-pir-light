@@ -2,6 +2,8 @@
 #include "RGBColor.h"
 #include "RGBLED.h"
 
+byte sensorPin = 4;
+
 ToggleButton permOnSwitch(2);
 RGBColor a(1,10,200);
 RGBColor b(255,255,255);
@@ -13,12 +15,13 @@ RGBLED light(9, 10, 11, f, 0.0001);
 
 void setup() {
   pinMode(13, OUTPUT);
+  pinMode(sensorPin, INPUT);
   Serial.begin(9600);
 }
 
 void loop() {
   permOnSwitch.update();
-  if (permOnSwitch.isOn()) {
+  if (permOnSwitch.isOn() || sensorTripped()) {
     digitalWrite(13, HIGH);
     light.on();
   }
@@ -26,4 +29,8 @@ void loop() {
     digitalWrite(13, LOW);
     light.off();
   }
+}
+
+bool sensorTripped() {
+  return digitalRead(sensorPin) == HIGH;
 }

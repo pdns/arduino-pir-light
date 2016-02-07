@@ -1,7 +1,7 @@
 #include "ToggleButton.h"
 
 ToggleButton::ToggleButton(int rPin) : pin(rPin) {
-  digitalRead(pin);
+  pinMode(rPin, INPUT);
   currState = false;
   prevPressed = false;
 }
