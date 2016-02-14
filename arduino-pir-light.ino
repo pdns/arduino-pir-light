@@ -11,7 +11,8 @@ RGBColor c(200,1,200);
 RGBColor d(0,0,0);
 RGBColor e(255, 0, 168);
 RGBColor f(255, 255, 0);
-RGBLED light(9, 10, 11, f, 0.0001);
+RGBColor j(128, 128, 128);
+RGBLED light(10, 9, 11, j, 0.0001);
 
 void setup() {
   pinMode(13, OUTPUT);
@@ -23,11 +24,11 @@ void loop() {
   permOnSwitch.update();
   if (permOnSwitch.isOn() || sensorTripped()) {
     digitalWrite(13, HIGH);
-    light.on();
+    // light.on();
   }
   else {
     digitalWrite(13, LOW);
-    light.off();
+    // light.off();
   }
 }
 
